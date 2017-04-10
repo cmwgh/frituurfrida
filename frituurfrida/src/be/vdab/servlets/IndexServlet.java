@@ -16,7 +16,7 @@ import be.vdab.entities.*;
 /**
  * Servlet implementation class IndexServlet
  */
-@WebServlet("/index.htm")
+@WebServlet(urlPatterns="/index.htm", name="indexservlet")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/index.jsp";
@@ -25,9 +25,10 @@ public class IndexServlet extends HttpServlet {
 	throws ServletException, IOException {
 	LocalDate vandaag = LocalDate.now();
 	DayOfWeek weekdag = vandaag.getDayOfWeek();
-	
+	request.setAttribute("telefoonNummerHelpDesk",
+			this.getInitParameter("telefoonNummerHelpDesk"));
 	request.setAttribute("frituurFrida", new Adres("Frituurweg", "17A", new Gemeente("Genk", 3600)));
-
+	
 	
 	request.setAttribute("openGesloten",
 	weekdag == DayOfWeek.MONDAY || weekdag == DayOfWeek.THURSDAY ?
