@@ -19,7 +19,7 @@
 </dl>
 <div>Telefoonnummer helpdesk:
 <a
-href="tel:+${telefoonNummerHelpDesk.replace('/','')}">${telefoonNummerHelpDesk}
+href="tel:+${initParam.telefoonNummerHelpDesk.replace('/','')}">${initParam.telefoonNummerHelpDesk}
 </a></div>
 </body>
 </html>

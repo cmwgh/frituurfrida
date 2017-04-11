@@ -26,7 +26,7 @@ public class IndexServlet extends HttpServlet {
 	LocalDate vandaag = LocalDate.now();
 	DayOfWeek weekdag = vandaag.getDayOfWeek();
 	request.setAttribute("telefoonNummerHelpDesk",
-			this.getInitParameter("telefoonNummerHelpDesk"));
+			this.getServletContext().getInitParameter("telefoonNummerHelpDesk"));
 	request.setAttribute("frituurFrida", new Adres("Frituurweg", "17A", new Gemeente("Genk", 3600)));
 	
 	
