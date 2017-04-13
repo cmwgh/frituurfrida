@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import be.vdab.entities.Saus;
+import be.vdab.repositories.SausRepository;
 
 /**
  * Servlet implementation class SauzenServlet
@@ -19,16 +20,12 @@ import be.vdab.entities.Saus;
 public class SauzenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "/WEB-INF/JSP/sauzen.jsp";
-
+	private final SausRepository sausRepository = new SausRepository();
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Saus> sauzen = Arrays.asList(
-				new Saus(3L, "cocktail", Arrays.asList("mayonaise", "ketchup", "cognac")),
-				new Saus(6L, "mayonaise", Arrays.asList("ei", "mosterd")),
-				new Saus(7L, "mosterd", Arrays.asList("mosterd", "azijn", "witte wijn")),
-				new Saus(12L, "tartare", Arrays.asList("mayonaise", "augurk", "tabasco")),
-				new Saus(44L, "vinaigrette", Arrays.asList("olijfolie", "mosterd", "azijn")));
-		request.setAttribute("sauzen", sauzen);
+		request.setAttribute("sauzen", sausRepository.findAll());
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 }
