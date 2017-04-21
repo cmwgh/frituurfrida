@@ -7,13 +7,24 @@
 </head>
 <body>
 <h1>Sauzen</h1>
+<form method='post' action="<c:url value='/sauzen/verwijderen.htm'/>">
 <c:forEach var='saus' items='${sauzen}'>
-<h2>${saus.naam}</h2>
-<img src='images/${saus.naam}.png' alt='${saus.naam}'> ingrediënten:
-<c:forEach var='ingredient' items='${saus.ingredienten}'
-varStatus='status'>
+<h2>
+<label>
+<input type='checkbox' name='id' value='${saus.id}'>
+${saus.naam}
+</label>
+</h2>
+<img alt='${saus.naam}' src='<c:url value="/images/${saus.naam}.png"/>'>
+ingrediënten:
+<c:forEach var='ingredient' items='${saus.ingredienten}' varStatus='status'>
 ${ingredient}<c:if test='${not status.last}'>, </c:if>
+
 </c:forEach>
+
 </c:forEach>
+<div><input type='submit' value='Aangevinkte sauzen verwijderen'></div>
+
+</form>
 </body>
 </html>
