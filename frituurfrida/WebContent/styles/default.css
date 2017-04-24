@@ -38,3 +38,12 @@ input[type='checkbox'] {
 input:focus, textarea:focus, select:focus {
 	background-color: #FFFFD6
 }
+
+.meisjes {
+background-color: #FFCCFF;
+color: #FF0066;
+}
+.jongens {
+background-color: #CCFFFF;
+color: #3300FF;
+}
