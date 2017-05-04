@@ -1,7 +1,7 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix='fmt' uri="http://java.sun.com/jsp/jstl/fmt" %>
-<<fmt:setBundle basename='resourceBundles.teksten'/>
+<fmt:setBundle basename='resourceBundles.teksten'/>
 <!doctype html>
 <html>
 <head>
