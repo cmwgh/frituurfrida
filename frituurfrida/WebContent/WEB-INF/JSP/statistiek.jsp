@@ -1,4 +1,5 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
+<%@taglib prefix='vdab' uri='http://vdab.be/tags'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!doctype html>
 <html lang='nl'>
@@ -13,6 +14,7 @@ td:Last-child {
 </style>
 </head>
 <body>
+<vdab:menu/>
 <h1>Statistiek</h1>
 <c:if test="${not empty statistiek}">
 <table>

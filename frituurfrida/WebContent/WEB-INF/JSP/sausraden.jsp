@@ -1,4 +1,5 @@
 <%@page contentType='text/html' pageEncoding='UTF-8'%>
+<%@taglib prefix='vdab' uri='http://vdab.be/tags'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 <!doctype html>
 <html lang='nl'>
@@ -8,6 +9,7 @@
 </c:import>
 </head>
 <body>
+<vdab:menu/>
 <h1>Saus raden</h1>
 <c:choose>
 <c:when test="${sausRadenSpel.verloren}">
