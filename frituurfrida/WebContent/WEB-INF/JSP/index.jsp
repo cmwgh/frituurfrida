@@ -14,7 +14,7 @@
 <img src='<c:url value="/images/${afbeelding}.png"/>'
 alt="<fmt:message key='${openGesloten}'/>">
 <h2><fmt:message key='adres'/></h2>
-${adres.straat} ${adres.huisNr}<br>
-${adres.gemeente.postcode} ${adres.gemeente.naam}
+${frituurFrida.straat} ${frituurFrida.huisNr}<br>
+${frituurFrida.gemeente.postCode} ${frituurFrida.gemeente.naam}
 </body>
 </html>
