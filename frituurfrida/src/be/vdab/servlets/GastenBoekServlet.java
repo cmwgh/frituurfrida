@@ -1,8 +1,10 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import be.vdab.entities.GastenBoekEntry;
@@ -30,6 +33,12 @@ public class GastenBoekServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			if (session.getAttribute("beheer") != null) {
+				request.setAttribute("beheer", true);
+			}
+		}
 		request.setAttribute("gastenboek", gastenBoekRepository.findAll());
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
@@ -39,9 +48,33 @@ public class GastenBoekServlet extends HttpServlet {
 			throws ServletException, IOException {
 		if (request.getParameter("toevoegen") != null) {
 			toevoegen(request, response);
+		} else if (request.getParameter("uitloggen") != null) {
+			uitloggen(request, response);
+		} else if (request.getParameter("verwijderen") != null) {
+		verwijderen(request, response);
 		}
 	}
-
+	
+	private void uitloggen(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+			request.getSession().removeAttribute("beheer");
+			response.sendRedirect(response.encodeRedirectURL(
+			String.format(REDIRECT_URL, request.getContextPath())));
+			}
+	
+	private void verwijderen(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+			String[] idsAlsString=request.getParameterValues("id");
+			if (idsAlsString != null) {
+			gastenBoekRepository.delete(
+			Arrays.stream(idsAlsString)
+			.map(id -> Long.parseLong(id))
+			.collect(Collectors.toSet()));
+			}
+			response.sendRedirect(response.encodeRedirectURL(
+			String.format(REDIRECT_URL, request.getContextPath())));
+			}
+	
 	private void toevoegen(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Map<String, String> fouten = new HashMap<>();
